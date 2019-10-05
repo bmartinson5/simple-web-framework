@@ -1,4 +1,4 @@
-import Eventing from './Eventing';
+import {Eventing} from './Eventing';
 import { Sync } from './Sync';
 import { Attributes } from './Attributes';
 
@@ -21,14 +21,17 @@ export class User {
 
         ){}
 
-    get(propName: string): (number | string) {
-        return this.data[propName];
+    get on() {
+        return this.events.on;
     }
 
-    set(update: UserProps): void {
-        Object.assign(this.data, update);
+    get trigger() {
+        return this.events.trigger;
     }
 
+    get get(){
+        return this.attributes.get;
+    }
 
 }
 

@@ -2,15 +2,31 @@ import {User} from './models/User';
 
 import axios from 'axios';
 
-const user = new User({name: 'new record', age: 0});
-user.events.on('click', () => {
-    console.log('change');
+class Person {
+    constructor(public firstName: string, public lastName: string){
+
+    }
+
+    get fullName(): string {
+        return `${this.firstName} ${this.lastName}`
+    }
+
+}
+
+const person = new Person('firstName', 'lastName');
+console.log(person.fullName);
+
+const user = new User({name: 'name', age: 0});
+console.log(user.get('name'));
+
+const on = user.on;
+const trigger = user.trigger;
+
+on('change', () => {
+    console.log('clicked on');
+    
 })
 
-user.events.trigger('click')
-
-user.save();
-
-console.log(user);
+trigger('change');
 
 
